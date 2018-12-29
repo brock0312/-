@@ -74,14 +74,20 @@ def fuction(name,url):
 		satis[影城movie[i]]=score[i]
 		
 #輸出格式
-	for i in 影城time:
-		if len(i)==0:
-			i.append('今日已無場次')
+	# for i in 影城time:
+		# if len(i)==0:
+			# i.append('今日已無場次')
 	print(name)
+	counter = 0
 	for a in range(len(影城movie)):
 		timelist = " ".join(str(e) for e in 影城time[a])
-		print("@"+str(影城movie[a]))
-		print("    "+"場次: "+timelist)
+		if len(timelist)!= 0:
+			print("@"+str(影城movie[a]))
+			print("    "+"場次: "+timelist)
+			counter += 1
+	if counter == 0:
+		print("    "+"本時段無場次")
+			
 	print()
 fuction("東南亞秀泰影城",'https://movies.yahoo.com.tw/theater_result.html/id=53')
 fuction("百老匯數位影城",'https://movies.yahoo.com.tw/theater_result.html/id=52')
@@ -93,5 +99,4 @@ for i in range(len(satis)):
 	k = scoreorder[i][1]
 	print(k)
 	print('%35s'%-scoreorder[i][0])
-	k = scoreorder[i][1]
-	print(k,-scoreorder[i][0])
+
