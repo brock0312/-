@@ -99,4 +99,3 @@ for i in range(len(satis)):
 	k = scoreorder[i][1]
 	print(k)
 	print('%35s'%-scoreorder[i][0])
-
