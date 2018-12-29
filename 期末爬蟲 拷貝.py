@@ -1,4 +1,15 @@
 satis = dict()
+#import datetime
+# starttime = datetime.datetime(1900,1,1,12,00)
+# endtime = datetime.datetime(1900,1,1,15,00)
+starttimehour=input()
+starttimeminute=input()
+starttime=starttimehour+':'+starttimeminute
+endtimehour=input()
+endtimeminute=input()
+endtime=endtimehour+':'+endtimeminute
+
+
 def fuction(name,url):
 	import requests
 	requests.get(url)
@@ -30,8 +41,9 @@ def fuction(name,url):
 	for art in article2:
 		art = str(art)
 		num2 = art.find('">')
-		art = art[num2+2:-5]
+		art = art[num2+2:-5]	
 		影城timecode.append(art)
+		
 		
 	for i in 影城timecode:
 		n=0
@@ -41,7 +53,12 @@ def fuction(name,url):
 			n+=1
 			if j == 't':
 				find_time1=i.find('t">',n-1)
-				ava_time.append(i[find_time1+3:find_time1+8])
+				selecttime = i[find_time1+3:find_time1+8]
+				if selecttime>=starttime and selecttime<=endtime:
+					ava_time.append(selecttime)
+				# selecttime = datetime.datetime.strptime(selecttime,'%H:%M')
+				# if selecttime>starttime and selecttime<endtime:
+					# ava_time.append(selecttime.strftime('%H:%M'))
 
 #滿意度
 	
@@ -70,7 +87,11 @@ fuction("東南亞秀泰影城",'https://movies.yahoo.com.tw/theater_result.html
 fuction("百老匯數位影城",'https://movies.yahoo.com.tw/theater_result.html/id=52')
 fuction("梅花數位影院",'https://movies.yahoo.com.tw/theater_result.html/id=126')	
 
+print("滿意度")
 scoreorder = sorted( [ [-satis[key],key] for key in satis ] )  #用前者VALUE排序
 for i in range(len(satis)):
+	k = scoreorder[i][1]
+	print(k)
+	print('%35s'%-scoreorder[i][0])
 	k = scoreorder[i][1]
 	print(k,-scoreorder[i][0])
